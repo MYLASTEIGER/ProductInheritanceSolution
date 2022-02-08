@@ -12,10 +12,13 @@ namespace ProductInheritance {
             Product widget2 = new Widget("W2", 100, "medium", "white");
             Product widget3 = new Widget("W3", 200, "Large", "Blue");
             Product service = new Service("SVC", 500, "Premium", 5);
+            Product software = new Software("SFTW", 150, true);
+            
             salesOrder.Add(widget1);
             salesOrder.Add(widget2);
             salesOrder.Add(widget3);
             salesOrder.Add(service);
+            salesOrder.Add(software);
 
             decimal salesOrderTotal = 0;
 
@@ -28,9 +31,14 @@ namespace ProductInheritance {
                 }
                 if (p is Service) {
                     Service s = p as Service;
-                    Console.WriteLine($"{s.Code}, {s.Price}, {s.ServiceLevel}, {s.NumberofYears}");
+                    Console.WriteLine($"{s.Code}, {s.Price:c}, {s.ServiceLevel}, {s.NumberofYears}");
                     continue;
                 } 
+                if (p is Software) {
+                    Software sf = p as Software;
+                    Console.WriteLine($"{sf.Code}, {sf.Price:c}, {(sf.Book ? "With Book" : "Without Book")}");
+                    continue;
+                }
             }
             Console.WriteLine($"Total sales order is {salesOrderTotal:c}");
 
